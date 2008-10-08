@@ -1,0 +1,33 @@
+---
+abstract: 'Generate POD-like documentation from embedded comments in JavaScript, Java, C, C++ source'
+author:
+  - 'Robert Krimen, C<< <rkrimen at cpan.org> >>'
+build_requires:
+  Test::Most: 0
+distribution_type: module
+generated_by: 'Module::Install version 0.760'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Doc-Simply
+no_index:
+  directory:
+    - inc
+    - t
+requires:
+  Carp::Clan::Share: 0
+  Getopt::Chain: 0
+  HTML::Declare: 0
+  JS::YUI::Loader: 0
+  Moose: 0
+  Parse::Yapp::Driver: 0
+  String::Comments::Extract: 0
+  Template: 0
+  Text::FixEOL: 0
+  Text::MultiMarkdown: 0
+  Tree::DAG_Node: 0
+resources:
+  license: http://dev.perl.org/licenses/
+  repository: http://github.com/robertkrimen/doc-simply/tree/master
+version: 0.01
