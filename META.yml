@@ -30,4 +30,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://github.com/robertkrimen/doc-simply/tree/master
-version: 0.01
+version: 0.02
