@@ -5,7 +5,7 @@ author:
 build_requires:
   Test::Most: 0
 distribution_type: module
-generated_by: 'Module::Install version 0.760'
+generated_by: 'Module::Install version 0.79'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -30,4 +30,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://github.com/robertkrimen/doc-simply/tree/master
-version: 0.02
+version: 0.03
