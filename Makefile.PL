@@ -1,46 +1,63 @@
-use inc::Module::Install;
 
-name 'Doc-Simply';
-all_from 'lib/Doc/Simply.pm';
+use strict;
+use warnings;
 
-resources repository => 'http://github.com/robertkrimen/doc-simply/tree/master';
 
-{
-    require ExtUtils::MakeMaker;
-    use strict;
-    no strict 'refs';
 
-    my $libscan = \&{"ExtUtils::MM_Any::libscan"};
-    *{"ExtUtils::MM_Any::libscan"} = sub {
-        return '' unless $libscan->(@_);
-        return '' if $_[1] =~ /\.sw[p-z]$/;
-        return $_[1];
-    };
+use ExtUtils::MakeMaker 6.31;
+
+
+
+my %WriteMakefileArgs = (
+                       'test' => {
+                                   'TESTS' => 't/*.t'
+                                 },
+                       'NAME' => 'Doc::Simply',
+                       'DISTNAME' => 'Doc-Simply',
+                       'CONFIGURE_REQUIRES' => {
+                                                 'ExtUtils::MakeMaker' => '6.31'
+                                               },
+                       'AUTHOR' => 'Robert Krimen <robertkrimen@gmail.com>',
+                       'BUILD_REQUIRES' => {
+                                             'Test::Most' => '0'
+                                           },
+                       'ABSTRACT' => 'Generate POD-like documentation from embedded comments in JavaScript, Java, C, C++ source',
+                       'EXE_FILES' => [
+                                        'bin/doc-simply'
+                                      ],
+                       'VERSION' => '0.031',
+                       'PREREQ_PM' => {
+                                        'HTML::Declare' => '0',
+                                        'Text::FixEOL' => '0',
+                                        'Carp::Clan::Share' => '0',
+                                        'Any::Moose' => '0',
+                                        'String::Comments::Extract' => '0',
+                                        'Template' => '0',
+                                        'Getopt::Usaginator' => '0',
+                                        'Text::MultiMarkdown' => '0',
+                                        'Tree::DAG_Node' => '0'
+                                      },
+                       'LICENSE' => 'perl'
+                     );
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM}; 
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod}; 
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
 }
 
-{
-    map { my ($pk, $vr) = split m/\s/; build_requires $pk => $vr || 0 } grep { ! /^\s*#/ } split m/\n/, <<_END_;
-Test::Most
-_END_
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
 
-    map { my ($pk, $vr) = split m/\s/; requires $pk => $vr || 0 } grep { ! /^\s*#/ } split m/\n/, <<_END_;
-Carp::Clan::Share
-Getopt::Chain
-HTML::Declare
-JS::YUI::Loader
-Moose
-Parse::Yapp::Driver
-String::Comments::Extract
-Template
-Text::FixEOL
-Text::MultiMarkdown
-Tree::DAG_Node
-_END_
-}
+WriteMakefile(%WriteMakefileArgs);
 
-install_script glob('script/doc-simply');
 
-auto_install;
-
-WriteAll;
 

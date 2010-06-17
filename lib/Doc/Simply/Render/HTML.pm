@@ -1,14 +1,17 @@
 package Doc::Simply::Render::HTML;
 
-use Moose;
+use Any::Moose;
 use Doc::Simply::Carp;
 
 use Doc::Simply::Render::HTML::TT;
 
 use Text::MultiMarkdown qw/markdown/;
 use Template;
-use JS::YUI::Loader;
 use HTML::Declare qw/LINK SCRIPT STYLE/;
+
+use constant YUI_reset_fonts_grids_base => "http://yui.yahooapis.com/combo?2.8.1/build/reset-fonts-grids/reset-fonts-grids.css&2.8.1/build/base/base-min.css";
+use constant YUI_reset => "http://yui.yahooapis.com/combo?2.8.1/build/reset/reset-min.css";
+
 
 has tt => qw/is ro lazy_build 1 isa Template/;
 sub _build_tt {
@@ -161,18 +164,15 @@ sub render {
 
     my $style = lc ($given{style} || "standard");
 
-    my $yui = JS::YUI::Loader->new_from_yui_host;
     if ($style eq "standard") {
-        push @css, $self->css_render({ link =>  $yui->uri('reset-fonts-grids') });
-        push @css, $self->css_render({ link =>  $yui->uri('base') });
+        push @css, $self->css_render({ link => YUI_reset_fonts_grids_base });
         push @css, $self->css_render({ content => Doc::Simply::Render::HTML::TT->css_standard });
     }
     elsif ($style eq "base") {
-        push @css, $self->css_render({ link =>  $yui->uri('reset-fonts-grids') });
-        push @css, $self->css_render({ link =>  $yui->uri('base') });
+        push @css, $self->css_render({ link => YUI_reset_fonts_grids_base });
     }
     elsif ($style eq "reset") {
-        push @css, $self->css_render({ link =>  $yui->uri('reset') });
+        push @css, $self->css_render({ link => YUI_reset });
     }
     else {
         croak "Don't understand style \"$style\"";
@@ -192,7 +192,7 @@ sub render {
         }
     }
 
-    $self->process_tt(input => "document", context => { index => \@index, document => $document, content => $content, css => \@css, js => \@js });
+    $self->process_tt( input => "document", context => { index => \@index, document => $document, content => $content, css => \@css, js => \@js } );
 }
 
 sub _format_tag {

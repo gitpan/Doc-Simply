@@ -1,6 +1,6 @@
 package Doc::Simply::Parser;
 
-use Moose;
+use Any::Moose;
 use Doc::Simply::Carp;
 
 use Doc::Simply::Document;
@@ -54,7 +54,7 @@ sub parse {
 
 package Doc::Simply::Parser::Node;
 
-use Moose;
+use Any::Moose;
 use Doc::Simply::Carp;
 
 use base qw/Tree::DAG_Node/;
@@ -67,15 +67,10 @@ sub _build_tag_meta {
     return Doc::Simply::Parser::Node::Meta->for($self->tag);
 }
 
-sub new {
-    my $class = shift;
-    my $self = $class->Moose::Object::new(@_);
-    $self->_init;
-    $self->name($self->tag);
-    return $self;
-}
-
 sub BUILD {
+    my $self = shift;
+    $self->_init;
+    $self->name( $self->tag );
 }
 
 sub _find_enclosing_node {
@@ -126,7 +121,7 @@ sub content_from {
 
 package Doc::Simply::Parser::Node::Meta;
 
-use Moose;
+use Any::Moose;
 use Doc::Simply::Carp;
 
 has tag => qw/is ro required 1 isa Str/;

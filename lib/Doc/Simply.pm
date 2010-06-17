@@ -1,7 +1,17 @@
 package Doc::Simply;
+BEGIN {
+  $Doc::Simply::VERSION = '0.031';
+}
+# ABSTRACT:  Generate POD-like documentation from embedded comments in JavaScript, Java, C, C++ source
 
 use warnings;
 use strict;
+
+
+1;
+
+__END__
+=pod
 
 =head1 NAME
 
@@ -9,11 +19,7 @@ Doc::Simply - Generate POD-like documentation from embedded comments in JavaScri
 
 =head1 VERSION
 
-Version 0.03
-
-=cut
-
-our $VERSION = '0.03';
+version 0.031
 
 =head1 SYNOPSIS
 
@@ -23,7 +29,7 @@ our $VERSION = '0.03';
 
 =head1 DESCRIPTION
 
-Doc::Simply is bundled with C<doc-simply>, a command-line application that transforms (special) comments into documentation
+Doc::Simply is bundled with C<doc-simply>, a commandline application that transforms (special) comments into documentation
 
 It is modeled after Plain Old Documentation but it is not an exact mimic
 
@@ -69,64 +75,20 @@ L<http://daringfireball.net/projects/markdown/syntax>
 
 You can contribute or fork this project via GitHub:
 
-L<http://github.com/robertkrimen/doc-simply/tree/master>
+L<http://github.com/robertkrimen/Doc-Simply/tree/master>
 
-    git clone git://github.com/robertkrimen/doc-simply.git Doc-Simply
+    git clone git://github.com/robertkrimen/Doc-Simply.git Doc-Simply
 
 =head1 AUTHOR
 
-Robert Krimen, C<< <rkrimen at cpan.org> >>
+  Robert Krimen <robertkrimen@gmail.com>
 
-=head1 BUGS
+=head1 COPYRIGHT AND LICENSE
 
-Please report any bugs or feature requests to C<bug-doc-simply at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Doc-Simply>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+This software is copyright (c) 2010 by Robert Krimen.
 
-
-
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc Doc::Simply
-
-
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Doc-Simply>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Doc-Simply>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Doc-Simply>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Doc-Simply>
-
-=back
-
-
-=head1 ACKNOWLEDGEMENTS
-
-
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008 Robert Krimen, all rights reserved.
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
-
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
 
-1; # End of Doc::Simply
