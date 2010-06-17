@@ -23,4 +23,4 @@ requires:
   Text::FixEOL: 0
   Text::MultiMarkdown: 0
   Tree::DAG_Node: 0
-version: 0.031
+version: 0.032

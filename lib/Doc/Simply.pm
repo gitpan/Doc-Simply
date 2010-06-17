@@ -1,6 +1,6 @@
 package Doc::Simply;
 BEGIN {
-  $Doc::Simply::VERSION = '0.031';
+  $Doc::Simply::VERSION = '0.032';
 }
 # ABSTRACT:  Generate POD-like documentation from embedded comments in JavaScript, Java, C, C++ source
 
@@ -19,7 +19,7 @@ Doc::Simply - Generate POD-like documentation from embedded comments in JavaScri
 
 =head1 VERSION
 
-version 0.031
+version 0.032
 
 =head1 SYNOPSIS
 

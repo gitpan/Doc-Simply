@@ -25,7 +25,7 @@ my %WriteMakefileArgs = (
                        'EXE_FILES' => [
                                         'bin/doc-simply'
                                       ],
-                       'VERSION' => '0.031',
+                       'VERSION' => '0.032',
                        'PREREQ_PM' => {
                                         'HTML::Declare' => '0',
                                         'Text::FixEOL' => '0',
